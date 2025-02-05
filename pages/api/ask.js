@@ -5,7 +5,7 @@ export default function Home() {
   const [answer, setAnswer] = useState("");
 
   const askQuestion = async () => {
-    const response = await fetch("https://<your-worker-subdomain>.workers.dev/api/ask", {
+    const response = await fetch("https://aipoweredqaplatform.installersguild.workers.dev", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question }),
