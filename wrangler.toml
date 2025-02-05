@@ -1,0 +1,9 @@
+name = "my-cloudflare-worker"
+type = "javascript"
+
+# Specify your entry point script here
+main = "worker.js"
+
+account_id = "your-account-id"
+workers_dev = true
+compatibility_date = "2025-02-05"
