@@ -4,6 +4,6 @@ type = "javascript"
 # Specify your entry point script here
 main = "worker.js"
 
-account_id = "your-account-id"
+account_id = "1cac5c88f9a01efc198d6238fc5b17dd"
 workers_dev = true
 compatibility_date = "2025-02-05"
