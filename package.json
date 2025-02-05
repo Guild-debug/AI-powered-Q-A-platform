@@ -2,7 +2,7 @@
   "name": "my-cloudflare-worker",
   "version": "1.0.0",
   "description": "A Cloudflare Worker project",
-  "main": "index.js",
+  "main": "worker.js",
   "scripts": {
     "deploy": "npx wrangler deploy"
   },
