@@ -1,0 +1,17 @@
+{
+  "name": "my-cloudflare-worker",
+  "version": "1.0.0",
+  "description": "A Cloudflare Worker project",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "npx wrangler deploy"
+  },
+  "dependencies": {
+    "wrangler": "^3.107.3",
+    "@rollup/plugin-inject": "^4.0.0",
+    "@jridgewell/sourcemap-codec": "^1.4.9"
+  },
+  "devDependencies": {},
+  "author": "Your Name",
+  "license": "ISC"
+}
