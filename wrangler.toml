@@ -1,4 +1,4 @@
-name = "ai-qa-worker"  # Your worker name (change if needed)
+name = "aipoweredqaplatform"  # Your worker name (change if needed)
 main = "worker.js"  # Entry-point script
 compatibility_date = "2024-02-05"
 account_id = "1cac5c88f9a01efc198d6238fc5b17dd"  # Replace with your actual Cloudflare Account ID
