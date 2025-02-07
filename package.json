@@ -1,17 +1,22 @@
 {
   "name": "aipoweredqaplatform",
   "version": "1.0.0",
-  "description": "Your project description",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "node index.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "npx wrangler deploy"
   },
   "dependencies": {
-    "@rollup/plugin-inject": "^4.0.0",
-    "@jridgewell/sourcemap-codec": "^1.4.9",
-    "other-dependencies": "version"
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "devDependencies": {},
-  "author": "Your Name",
-  "license": "ISC"
+  "devDependencies": {
+    "wrangler": "^3.30.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
