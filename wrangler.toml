@@ -2,7 +2,7 @@ name = "aipoweredqaplatform"  # Change this to your worker name
 main = "worker.js"  # Specify the entry point script
 compatibility_date = "2024-02-07"
 
-account_id = "your-cloudflare-account-id"  # Replace with your actual Cloudflare Account ID
+account_id = "1cac5c88f9a01efc198d6238fc5b17dd"  # Replace with your actual Cloudflare Account ID
 workers_dev = true
 
 [vars]
