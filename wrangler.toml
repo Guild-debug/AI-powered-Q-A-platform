@@ -1,16 +1,12 @@
-name = "aipoweredqaplatform"  # Change this to your desired worker name
-type = "javascript"
-account_id = "https://aipoweredqaplatform.installersguild.workers.dev/"  # Replace with your actual Cloudflare Account ID
+name = "aipoweredqaplatform"  # Change this to your worker name
+main = "worker.js"  # Specify the entry point script
+compatibility_date = "2024-02-07"
+
+account_id = "your-cloudflare-account-id"  # Replace with your actual Cloudflare Account ID
 workers_dev = true
-route = ""
-zone_id = ""
-compatibility_date = "2024-02-05"
 
 [vars]
 OPENAI_API_KEY = "your-secret-api-key"  # Store your OpenAI API key securely
 
 [build]
 command = "npm install && npm run build"
-
-[dev]
-port = 8787
