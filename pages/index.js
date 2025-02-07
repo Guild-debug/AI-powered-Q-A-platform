@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../styles/globals.css';  // Import the CSS file
 
 export default function Home() {
   const [question, setQuestion] = useState("");
@@ -15,19 +16,18 @@ export default function Home() {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px", color: "#ffffff", backgroundColor: "#121212", height: "100vh" }}>
-      <h1 style={{ color: "#00ffcc" }}>AI Q&A Platform</h1>
+    <div className="container">
+      <h1>AI Q&A Platform</h1>
       <input
         type="text"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
         placeholder="Ask me anything..."
-        style={{ width: "60%", padding: "10px", fontSize: "16px", backgroundColor: "#333", color: "#fff" }}
       />
-      <button onClick={askQuestion} style={{ marginLeft: "10px", padding: "10px", backgroundColor: "#00ffcc", border: "none", cursor: "pointer" }}>
+      <button onClick={askQuestion}>
         Ask AI
       </button>
-      <div style={{ marginTop: "20px", fontSize: "18px", color: "#ffffff" }}>
+      <div className="answer">
         <strong>Answer:</strong> {answer}
       </div>
     </div>
