@@ -1,53 +1,35 @@
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request));
-});
+export default {
+  async fetch(request) {
+    const url = new URL(request.url);
 
-/**
- * Respond to the request with different pages based on the URL path.
- * @param {Request} request
- */
-async function handleRequest(request) {
-  const url = new URL(request.url);
-  let response;
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        headers: { "Access-Control-Allow-Origin": "*" },
+      });
+    }
 
-  switch (url.pathname) {
-    case '/':
-      response = new Response(await fetchAsset('pages/index.html'), {
-        status: 200,
-        headers: { 'Content-Type': 'text/html' },
+    if (url.pathname === "/ask") {
+      const { question } = await request.json();
+      
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${OPENAI_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: question }],
+        }),
       });
-      break;
-    case '/about':
-      response = new Response(await fetchAsset('pages/about.html'), {
-        status: 200,
-        headers: { 'Content-Type': 'text/html' },
-      });
-      break;
-    case '/contact':
-      response = new Response(await fetchAsset('pages/contact.html'), {
-        status: 200,
-        headers: { 'Content-Type': 'text/html' },
-      });
-      break;
-    default:
-      response = new Response('404 Page Not Found', {
-        status: 404,
-        headers: { 'Content-Type': 'text/html' },
-      });
-      break;
-  }
 
-  return response;
-}
+      const data = await response.json();
 
-/**
- * Fetch the content of an asset.
- * @param {string} path - The path to the asset.
- */
-async function fetchAsset(path) {
-  const response = await fetch(`https://raw.githubusercontent.com/your-username/your-repo/main/${path}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${path}`);
-  }
-  return await response.text();
-}
+      return new Response(JSON.stringify({ answer: data.choices[0].message.content }), {
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      });
+    }
+
+    return new Response("Not Found", { status: 404 });
+  },
+};
