@@ -1,35 +1,25 @@
-import { useState } from "react";
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Only POST requests allowed" });
+  }
 
-export default function Home() {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+  try {
+    // Replace this URL with your actual Cloudflare Worker URL
+    const workerURL = "https://aipoweredqaplatform.installersguild.workers.dev/";
 
-  const askQuestion = async () => {
-    const response = await fetch("https://aipoweredqaplatform.installersguild.workers.dev", {
+    const response = await fetch(workerURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question }),
+      body: JSON.stringify(req.body),
     });
-    const data = await response.json();
-    setAnswer(data.answer);
-  };
 
-  return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>AI Q&A Platform</h1>
-      <input
-        type="text"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        placeholder="Ask me anything..."
-        style={{ width: "60%", padding: "10px", fontSize: "16px" }}
-      />
-      <button onClick={askQuestion} style={{ marginLeft: "10px", padding: "10px" }}>
-        Ask AI
-      </button>
-      <div style={{ marginTop: "20px", fontSize: "18px" }}>
-        <strong>Answer:</strong> {answer}
-      </div>
-    </div>
-  );
+    if (!response.ok) {
+      throw new Error("Failed to fetch from Cloudflare Worker");
+    }
+
+    const data = await response.json();
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
