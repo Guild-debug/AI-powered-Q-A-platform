@@ -1,5 +1,4 @@
 import { useState } from "react";
-import '../styles/globals.css';  // Import the CSS file
 
 export default function Home() {
   const [question, setQuestion] = useState("");
