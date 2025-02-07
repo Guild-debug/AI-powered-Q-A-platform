@@ -1,0 +1,9 @@
+/* global-styles/src/components/layout.css */
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
