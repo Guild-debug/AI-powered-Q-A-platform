@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Layout from "../components/layout";
 
 export default function Home() {
   const [question, setQuestion] = useState("");
@@ -15,20 +16,22 @@ export default function Home() {
   };
 
   return (
-    <div className="container">
-      <h1>AI Q&A Platform</h1>
-      <input
-        type="text"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        placeholder="Ask me anything..."
-      />
-      <button onClick={askQuestion}>
-        Ask AI
-      </button>
-      <div className="answer">
-        <strong>Answer:</strong> {answer}
+    <Layout>
+      <div className="container">
+        <h1>AI Q&A Platform</h1>
+        <input
+          type="text"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Ask me anything..."
+        />
+        <button onClick={askQuestion}>
+          Ask AI
+        </button>
+        <div className="answer">
+          <strong>Answer:</strong> {answer}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
